@@ -1,6 +1,6 @@
-package com.quality.Assessment.Repositories;
+package wisdom.Repositories;
 
-import com.quality.Assessment.models.Statement;
+import wisdom.models.Statement;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StatementRepository extends JpaRepository<Statement, Long>{

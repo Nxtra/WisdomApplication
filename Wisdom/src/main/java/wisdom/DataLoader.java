@@ -1,7 +1,7 @@
-package com.quality.Assessment;
+package wisdom;
 
-import com.quality.Assessment.Repositories.StatementRepository;
-import com.quality.Assessment.models.Statement;
+import wisdom.Repositories.StatementRepository;
+import wisdom.models.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

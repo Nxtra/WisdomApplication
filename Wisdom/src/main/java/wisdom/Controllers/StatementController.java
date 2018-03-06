@@ -1,7 +1,7 @@
-package com.quality.Assessment.Controllers;
+package wisdom.Controllers;
 
-import com.quality.Assessment.Repositories.StatementRepository;
-import com.quality.Assessment.models.Statement;
+import wisdom.Repositories.StatementRepository;
+import wisdom.models.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,9 +51,8 @@ public class StatementController {
 
 
     @GetMapping(value = "/statements/count")
-    public String count(){
-        long count = repository.count();
-        return String.format("<b>De statement database bevat %d statements</b>",count);
+    public ResponseEntity<String> count(){
+        return ok(String.format("<b>De statement database bevat %d statements</b>",repository.count()));
     }
 
     @DeleteMapping(value="/statements/delete/{id}")

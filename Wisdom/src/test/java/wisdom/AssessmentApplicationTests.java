@@ -1,4 +1,4 @@
-package com.quality.Assessment;
+package wisdom;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

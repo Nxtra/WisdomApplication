@@ -1,4 +1,4 @@
-package com.quality.Assessment.models;
+package wisdom.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
