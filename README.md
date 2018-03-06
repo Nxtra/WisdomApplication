@@ -1,0 +1,3 @@
+# WisdomApplication
+
+Practice project
