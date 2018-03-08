@@ -13,6 +13,7 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
+@RequestMapping(path="/statements")
 public class StatementController {
 
     private StatementRepository repository;
@@ -22,17 +23,17 @@ public class StatementController {
         this.repository = repository;
     }
 
-    @GetMapping(value = "/statements")
+    @GetMapping
     public List<Statement> getStatements(){
         return repository.findAll();
     }
 
-    @GetMapping(value = "/statements/{id}")
+    @GetMapping(value = "/{id}")
     public Statement getStatement(@PathVariable long id){
         return repository.findOne(id);
     }
 
-    @PutMapping(value = "/statements")
+    @PutMapping
     public ResponseEntity<Statement> putStatementThroughApi(@RequestBody @Valid Statement statement){
         if(repository.findBySentenceEquals(statement.getSentence())!= null){
             return badRequest().build();
@@ -40,7 +41,7 @@ public class StatementController {
         return ok(repository.save(statement));
     }
 
-    @PutMapping(value = "/statements/put/{sentence}")
+    @PutMapping(value = "/put/{sentence}")
     public ResponseEntity<Statement> putStatementThroughURL(@PathVariable String sentence, @RequestBody Statement statement) {
         statement.setSentence(sentence);
         if (repository.findBySentenceEquals(sentence) != null) {
