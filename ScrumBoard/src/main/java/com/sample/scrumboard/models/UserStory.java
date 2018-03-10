@@ -1,4 +1,4 @@
-package wisdom.models;
+package com.sample.scrumboard.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,26 +6,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Statement {
+public class UserStory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String sentence;
+    private String story;
 
-    public Statement(){
+    public UserStory(){
     }
 
-    public Statement(String sentence) {
-        this.sentence = sentence;
+    public UserStory(String story) {
+        this.story = story;
     }
 
     @Override
     public String toString() {
-        return "Statement{" +
+        return "UserStory{" +
                 "id=" + id +
-                ", sentence='" + sentence + '\'' +
+                ", story='" + story + '\'' +
                 '}';
     }
 
@@ -37,11 +37,11 @@ public class Statement {
         this.id = id;
     }
 
-    public String getSentence() {
-        return sentence;
+    public String getStory() {
+        return story;
     }
 
-    public void setSentence(String sentence) {
-        this.sentence = sentence;
+    public void setStory(String story) {
+        this.story = story;
     }
 }

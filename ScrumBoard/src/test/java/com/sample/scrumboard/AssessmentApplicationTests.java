@@ -1,4 +1,4 @@
-package wisdom;
+package com.sample.scrumboard;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
