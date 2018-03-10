@@ -1,6 +1,6 @@
 package com.sample.scrumboard.Controllers;
 
-import com.sample.scrumboard.models.UserStory;
+import com.sample.scrumboard.Models.UserStory;
 import com.sample.scrumboard.Repositories.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +29,19 @@ public class UserStoryController {
     }
 
     @GetMapping(value = "/{id}")
-    public UserStory getStatement(@PathVariable long id){
-        return repository.findOne(id);
+    public ResponseEntity<UserStory> getStatement(@PathVariable long id){
+        if(repository.findOne(id) != null){
+            return ok(repository.findOne(id));
+        }
+        return badRequest().build();
     }
 
+    @GetMapping(value = "/count")
+    public ResponseEntity<String> count(){
+        return ok(String.format("<b>De database bevat %d user stories </b>",repository.count()));
+    }
+
+    //@RequestBody annotation maps the HttpRequest body to a transfer or domain object, enabling automatic deserialization of the inbound HttpRequest body onto a Java object.
     @PutMapping
     public ResponseEntity<UserStory> putStatementThroughApi(@RequestBody @Valid UserStory userStory){
         if(repository.findByStoryEquals(userStory.getStory())!= null){
@@ -41,19 +50,13 @@ public class UserStoryController {
         return ok(repository.save(userStory));
     }
 
-    @PutMapping(value = "/put/{sentence}")
-    public ResponseEntity<UserStory> putStatementThroughURL(@PathVariable String sentence, @RequestBody UserStory userStory) {
-        userStory.setStory(sentence);
-        if (repository.findByStoryEquals(sentence) != null) {
+    @PutMapping(value = "/put/{story}")
+    public ResponseEntity<UserStory> putStatementThroughURL(@PathVariable String story, @RequestBody UserStory userStory) {
+        userStory.setStory(story);
+        if (repository.findByStoryEquals(story) != null) {
             return badRequest().build();
         }
         return ok(repository.save(userStory));
-    }
-
-
-    @GetMapping(value = "/count")
-    public ResponseEntity<String> count(){
-        return ok(String.format("<b>De statement database bevat %d statements</b>",repository.count()));
     }
 
     @DeleteMapping(value="/delete/{id}")

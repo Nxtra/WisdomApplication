@@ -1,4 +1,4 @@
-package com.sample.scrumboard.models;
+package com.sample.scrumboard.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
