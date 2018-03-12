@@ -1,15 +1,16 @@
 package com.sample.scrumboard.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userId", nullable = false, updatable = false)
     private Long id;
 
     private String firstName;
@@ -17,6 +18,11 @@ public class User {
     private String userName;
     private String passWord;
     private String email;
+
+    //the mappedBy element must be used to specify the relationship field or property of the entity that is the owner of the relationship
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<UserStory> userStoryList;
 
     public User() {
     }
@@ -87,5 +93,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<UserStory> getUserStoryList() {
+        return userStoryList;
+    }
+
+    public void setUserStoryList(List<UserStory> userStoryList) {
+        this.userStoryList = userStoryList;
     }
 }

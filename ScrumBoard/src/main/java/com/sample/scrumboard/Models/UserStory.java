@@ -1,9 +1,6 @@
 package com.sample.scrumboard.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class UserStory {
@@ -14,20 +11,18 @@ public class UserStory {
 
     private String story;
 
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User owner;
+
     public UserStory(){
     }
 
-    public UserStory(String story) {
+    public UserStory(String story, User owner) {
         this.story = story;
+        this.owner = owner;
     }
 
-    @Override
-    public String toString() {
-        return "UserStory{" +
-                "id=" + id +
-                ", story='" + story + '\'' +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -43,5 +38,13 @@ public class UserStory {
 
     public void setStory(String story) {
         this.story = story;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
