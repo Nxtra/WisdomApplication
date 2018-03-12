@@ -43,10 +43,10 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void addUserStories(){
-        userStoryRepository.save(new UserStory("As a <type of user>, I can <some goal> so that <some reason>."));
-        userStoryRepository.save(new UserStory("As a <type of user>, I want to <some goal> so that <some reason>."));
+        userStoryRepository.save(new UserStory("As a <type of user>, I can <some goal> so that <some reason>",userRepository.getOne(1L)));
+        userStoryRepository.save(new UserStory("As a <type of user>, I want to <some goal> so that <some reason>.", userRepository.getOne(1l)));
         userStoryRepository.save(new UserStory("As a developer, I want to use SonarLint so that it can help me " +
-                "keeping my code clean"));
+                "keeping my code clean", userRepository.getOne(2L)));
 
         LOG.info("User stories found with findAll():");
         LOG.info("-------------------------------");
