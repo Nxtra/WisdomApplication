@@ -18,17 +18,20 @@ import static org.junit.Assert.assertNotNull;
 @SpringBootTest
 public class SmokeTest {
 
+    @Autowired
     private HomeController homeController;
-    private UserController userController;
-    private UserRestController userRestController;
-    private UserStoryRestController userStoryRestController;
 
     @Autowired
-    public SmokeTest(HomeController homeController, UserController userController, UserRestController userRestController, UserStoryRestController userStoryRestController) {
-        this.homeController = homeController;
-        this.userController = userController;
-        this.userRestController = userRestController;
-        this.userStoryRestController = userStoryRestController;
+    private UserController userController;
+
+
+    @Autowired
+    private UserRestController userRestController;
+
+    @Autowired
+    private UserStoryRestController userStoryRestController;
+
+    public SmokeTest(){
     }
 
     @Test
