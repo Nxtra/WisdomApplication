@@ -1,8 +1,11 @@
 package com.sample.scrumboard.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,10 +16,24 @@ public class User {
     @Column(name = "userId", nullable = false, updatable = false)
     private Long id;
 
+    @NotNull
+    @Size(min=2, max=20)
     private String firstName;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String lastName;
+
+    @NotNull
+    @Size(min=2, max=20)
     private String userName;
+
+    @NotNull
+    @Size(min=2, max=30)
     private String passWord;
+
+    @NotNull
+    @Email
     private String email;
 
     //the mappedBy element must be used to specify the relationship field or property of the entity that is the owner of the relationship

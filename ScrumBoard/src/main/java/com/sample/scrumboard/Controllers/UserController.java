@@ -1,20 +1,19 @@
 package com.sample.scrumboard.Controllers;
 
 import com.sample.scrumboard.Models.User;
-import com.sample.scrumboard.Models.UserStory;
 import com.sample.scrumboard.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 
-import static org.springframework.http.ResponseEntity.badRequest;
-import static org.springframework.http.ResponseEntity.ok;
-
-@RestController
-@RequestMapping(path="/user")
+@Controller
 public class UserController {
 
     private UserRepository repository;
@@ -24,39 +23,21 @@ public class UserController {
         this.repository = repository;
     }
 
-    @GetMapping
-    public List<User> getUsers(){
-        return repository.findAll();
+    @GetMapping("/user")
+    public String userForm(Model model, User user) {
+        model.addAttribute("user", user);
+        return "user";
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getUserById(Long id){
-        if(repository.findOne(id) != null){
-            return ok(repository.findOne(id));
+    @PostMapping("/user")
+    public String userSubmit(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "user";
         }
-        return badRequest().build();
+
+        repository.save(user);
+        return "userSuccess";
     }
 
-    @GetMapping(value = "/count")
-    public ResponseEntity<String> count(){
-        return ok(String.format("<b>De database bevat %d users</b>",repository.count()));
-    }
-
-    @PutMapping
-    public ResponseEntity<User> putStatementThroughApi(@RequestBody @Valid User user){
-        if(repository.findByEmailEquals(user.getEmail())!= null){
-            return badRequest().build();
-        }
-        return ok(repository.save(user));
-    }
-
-    @DeleteMapping(value="/delete/{id}")
-    public ResponseEntity<User> deleteOne(@PathVariable Long id, @RequestBody UserStory user){
-        if(repository.getOne(id) != null){
-            repository.delete(id);
-            return ok().build();
-        }else{
-            return badRequest().build();
-        }
-    }
 }

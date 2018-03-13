@@ -14,12 +14,12 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping(path="/story")
-public class UserStoryController {
+public class UserRestStoryController {
 
     private UserStoryRepository repository;
 
     @Autowired
-    public UserStoryController(UserStoryRepository repository) {
+    public UserRestStoryController(UserStoryRepository repository) {
         this.repository = repository;
     }
 
