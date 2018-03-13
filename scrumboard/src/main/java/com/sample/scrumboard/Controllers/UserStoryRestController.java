@@ -5,6 +5,7 @@ import com.sample.scrumboard.Repositories.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -14,16 +15,21 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping(path="/story")
-public class UserRestStoryController {
+public class UserStoryRestController {
 
     private UserStoryRepository repository;
 
     @Autowired
-    public UserRestStoryController(UserStoryRepository repository) {
+    public UserStoryRestController(UserStoryRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping
+    @GetMapping//until there is a way to add new stories
+    public ModelAndView story(){
+        return new ModelAndView("redirect:/story/list");
+    }
+
+    @GetMapping(value = "/list")
     public List<UserStory> getStatements(){
         return repository.findAll();
     }
@@ -50,17 +56,8 @@ public class UserRestStoryController {
         return ok(repository.save(userStory));
     }
 
-    @PutMapping(value = "/put/{story}")
-    public ResponseEntity<UserStory> putStatementThroughURL(@PathVariable String story, @RequestBody UserStory userStory) {
-        userStory.setStory(story);
-        if (repository.findByStoryEquals(story) != null) {
-            return badRequest().build();
-        }
-        return ok(repository.save(userStory));
-    }
-
     @DeleteMapping(value="/delete/{id}")
-    public ResponseEntity<UserStory> deleteOne(@PathVariable Long id, @RequestBody UserStory userStory){
+    public ResponseEntity<UserStory> deleteOne(@PathVariable Long id){
         if(repository.getOne(id) != null){
             repository.delete(id);
             return ok().build();
