@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.quality</groupId>
-	<artifactId>Assessment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>assessment</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>Assessment</name>
+	<name>assessment</name>
 	<description></description>
 
 	<parent>
@@ -62,14 +62,19 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.3.6</version>
 				<configuration>
-					<archive>
-						<manifestEntries>
-							<Main-Class>com/sample/scrumboard/AssessmentApplication</Main-Class>
-						</manifestEntries>
-					</archive>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
