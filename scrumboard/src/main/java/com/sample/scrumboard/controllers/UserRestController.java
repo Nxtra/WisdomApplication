@@ -1,8 +1,8 @@
-package com.sample.scrumboard.Controllers;
+package com.sample.scrumboard.controllers;
 
-import com.sample.scrumboard.Models.User;
-import com.sample.scrumboard.Models.UserStory;
-import com.sample.scrumboard.Repositories.UserRepository;
+import com.sample.scrumboard.models.User;
+import com.sample.scrumboard.models.UserStory;
+import com.sample.scrumboard.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

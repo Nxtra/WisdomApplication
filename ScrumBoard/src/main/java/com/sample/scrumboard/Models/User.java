@@ -1,4 +1,4 @@
-package com.sample.scrumboard.Models;
+package com.sample.scrumboard.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;

@@ -1,4 +1,4 @@
-package com.sample.scrumboard.Models;
+package com.sample.scrumboard.models;
 
 import javax.persistence.*;
 

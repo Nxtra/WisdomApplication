@@ -2,16 +2,16 @@ package com.sample.scrumboard;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.sample.scrumboard.Controllers.HomeController;
-import com.sample.scrumboard.Controllers.UserController;
-import com.sample.scrumboard.Controllers.UserRestController;
-import com.sample.scrumboard.Controllers.UserStoryRestController;
+import com.sample.scrumboard.controllers.HomeController;
+import com.sample.scrumboard.controllers.UserController;
+import com.sample.scrumboard.controllers.UserRestController;
+import com.sample.scrumboard.controllers.UserStoryRestController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import static org.hamcrest.CoreMatchers.*;
+
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)

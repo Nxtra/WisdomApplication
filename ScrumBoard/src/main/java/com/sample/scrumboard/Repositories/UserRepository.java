@@ -1,6 +1,6 @@
-package com.sample.scrumboard.Repositories;
+package com.sample.scrumboard.repositories;
 
-import com.sample.scrumboard.Models.User;
+import com.sample.scrumboard.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
