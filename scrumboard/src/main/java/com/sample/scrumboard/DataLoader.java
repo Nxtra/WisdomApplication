@@ -1,9 +1,9 @@
 package com.sample.scrumboard;
 
-import com.sample.scrumboard.Repositories.UserRepository;
-import com.sample.scrumboard.Models.User;
-import com.sample.scrumboard.Repositories.UserStoryRepository;
-import com.sample.scrumboard.Models.UserStory;
+import com.sample.scrumboard.repositories.UserRepository;
+import com.sample.scrumboard.models.User;
+import com.sample.scrumboard.repositories.UserStoryRepository;
+import com.sample.scrumboard.models.UserStory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

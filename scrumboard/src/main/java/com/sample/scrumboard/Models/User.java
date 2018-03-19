@@ -1,4 +1,4 @@
-package com.sample.scrumboard.Models;
+package com.sample.scrumboard.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
@@ -9,10 +9,10 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class User {
+public class User{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userId", nullable = false, updatable = false)
     private Long id;
 
@@ -37,7 +37,7 @@ public class User {
     private String email;
 
     //the mappedBy element must be used to specify the relationship field or property of the entity that is the owner of the relationship
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = UserStory.class, mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<UserStory> userStoryList;
 

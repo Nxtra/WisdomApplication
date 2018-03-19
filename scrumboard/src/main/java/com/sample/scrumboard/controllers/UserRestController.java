@@ -1,8 +1,10 @@
-package com.sample.scrumboard.Controllers;
+package com.sample.scrumboard.controllers;
 
-import com.sample.scrumboard.Models.User;
-import com.sample.scrumboard.Models.UserStory;
-import com.sample.scrumboard.Repositories.UserRepository;
+import com.sample.scrumboard.dtos.UserDTO;
+import com.sample.scrumboard.models.User;
+import com.sample.scrumboard.models.UserStory;
+import com.sample.scrumboard.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +32,9 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getUserById(Long id){
-        if(repository.findOne(id) != null){
-            return ok(repository.findOne(id));
-        }
-        return badRequest().build();
+    public UserDTO getUserById(@PathVariable Long id, User user, ModelMapper modelMapper){
+            user = repository.getOne(id);
+            return modelMapper.map(user, UserDTO.class);
     }
 
     @GetMapping(value = "/count")
@@ -51,12 +51,8 @@ public class UserRestController {
     }
 
     @DeleteMapping(value="/delete/{id}")
-    public ResponseEntity<User> deleteOne(@PathVariable Long id, @RequestBody UserStory user){
-        if(repository.getOne(id) != null){
-            repository.delete(id);
-            return ok().build();
-        }else{
-            return badRequest().build();
-        }
+    public ResponseEntity<User> deleteOne(@PathVariable Long id, @RequestBody UserStory user) {
+        repository.deleteById(id);
+        return ok().build();
     }
 }

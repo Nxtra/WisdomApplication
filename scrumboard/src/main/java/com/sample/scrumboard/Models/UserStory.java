@@ -1,18 +1,22 @@
-package com.sample.scrumboard.Models;
+package com.sample.scrumboard.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 @Entity
-public class UserStory {
+public class UserStory{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "UserStoryId", nullable = false, updatable = false)
     private Long id;
 
     private String story;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonIgnore
     private User owner;
 
     public UserStory(){
@@ -23,6 +27,14 @@ public class UserStory {
         this.owner = owner;
     }
 
+    @Override
+    public String toString() {
+        return "UserStory{" +
+                "id=" + id +
+                ", story='" + story + '\'' +
+                ", owner=" + owner +
+                '}';
+    }
 
     public Long getId() {
         return id;

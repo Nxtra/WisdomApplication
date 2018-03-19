@@ -1,12 +1,13 @@
-package com.sample.scrumboard.Controllers;
+package com.sample.scrumboard.controllers;
 
-import com.sample.scrumboard.Models.UserStory;
-import com.sample.scrumboard.Repositories.UserStoryRepository;
+import com.sample.scrumboard.models.UserStory;
+import com.sample.scrumboard.repositories.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -36,10 +37,11 @@ public class UserStoryRestController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserStory> getStatement(@PathVariable long id){
-        if(repository.findOne(id) != null){
-            return ok(repository.findOne(id));
+        try{
+            return ok(repository.getOne(id));
+        }catch (EntityNotFoundException ex){
+            return badRequest().build();
         }
-        return badRequest().build();
     }
 
     @GetMapping(value = "/count")
@@ -57,12 +59,7 @@ public class UserStoryRestController {
     }
 
     @DeleteMapping(value="/delete/{id}")
-    public ResponseEntity<UserStory> deleteOne(@PathVariable Long id){
-        if(repository.getOne(id) != null){
-            repository.delete(id);
-            return ok().build();
-        }else{
-            return badRequest().build();
-        }
+    public void deleteOne(@PathVariable Long id){
+            repository.deleteById(id);
     }
 }

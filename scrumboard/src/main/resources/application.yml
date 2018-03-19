@@ -6,6 +6,9 @@ management:
     enabled: false
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
   h2:
     console:
       enabled: true
@@ -15,5 +18,11 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mappings,beans
 
 

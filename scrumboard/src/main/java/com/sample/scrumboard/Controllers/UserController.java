@@ -1,7 +1,7 @@
-package com.sample.scrumboard.Controllers;
+package com.sample.scrumboard.controllers;
 
-import com.sample.scrumboard.Models.User;
-import com.sample.scrumboard.Repositories.UserRepository;
+import com.sample.scrumboard.models.User;
+import com.sample.scrumboard.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

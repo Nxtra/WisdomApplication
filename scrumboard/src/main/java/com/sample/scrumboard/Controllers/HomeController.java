@@ -1,4 +1,4 @@
-package com.sample.scrumboard.Controllers;
+package com.sample.scrumboard.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
