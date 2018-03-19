@@ -1,18 +1,23 @@
 package com.sample.scrumboard.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class UserStory {
+public class UserStory implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String story;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
+    @JsonIgnore
     private User owner;
 
     public UserStory(){
@@ -23,6 +28,14 @@ public class UserStory {
         this.owner = owner;
     }
 
+    @Override
+    public String toString() {
+        return "UserStory{" +
+                "id=" + id +
+                ", story='" + story + '\'' +
+                ", owner=" + owner +
+                '}';
+    }
 
     public Long getId() {
         return id;

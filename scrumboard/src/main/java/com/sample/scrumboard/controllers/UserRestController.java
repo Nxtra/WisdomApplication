@@ -1,5 +1,7 @@
 package com.sample.scrumboard.controllers;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sample.scrumboard.models.User;
 import com.sample.scrumboard.models.UserStory;
 import com.sample.scrumboard.repositories.UserRepository;
@@ -30,11 +32,9 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getUserById(Long id){
-        if(repository.findOne(id) != null){
-            return ok(repository.findOne(id));
-        }
-        return badRequest().build();
+    public User getUserById(@PathVariable Long id, User user){
+            user = repository.getOne(id);
+            return user;
     }
 
     @GetMapping(value = "/count")
@@ -51,12 +51,8 @@ public class UserRestController {
     }
 
     @DeleteMapping(value="/delete/{id}")
-    public ResponseEntity<User> deleteOne(@PathVariable Long id, @RequestBody UserStory user){
-        if(repository.getOne(id) != null){
-            repository.delete(id);
-            return ok().build();
-        }else{
-            return badRequest().build();
-        }
+    public ResponseEntity<User> deleteOne(@PathVariable Long id, @RequestBody UserStory user) {
+        repository.deleteById(id);
+        return ok().build();
     }
 }
