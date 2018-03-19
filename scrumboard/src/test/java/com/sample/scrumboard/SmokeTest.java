@@ -1,7 +1,5 @@
 package com.sample.scrumboard;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.sample.scrumboard.controllers.HomeController;
 import com.sample.scrumboard.controllers.UserController;
 import com.sample.scrumboard.controllers.UserRestController;
@@ -11,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -37,8 +35,8 @@ public class SmokeTest {
     @Test
     public void controllerTest() throws Exception {
         //true, check not null
-        assertNotNull(homeController);
-        assertNotNull(userController);
+        assertThat(homeController).isNotNull();
+        assertThat(userController).isNotNull();
         assertNotNull(userRestController);
         assertNotNull(userStoryRestController);
     }
