@@ -1,17 +1,15 @@
 package com.sample.scrumboard.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class User implements Serializable{
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +37,7 @@ public class User implements Serializable{
     private String email;
 
     //the mappedBy element must be used to specify the relationship field or property of the entity that is the owner of the relationship
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = UserStory.class, mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<UserStory> userStoryList;
 

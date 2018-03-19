@@ -1,16 +1,15 @@
 package com.sample.scrumboard.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class UserStory implements Serializable {
+public class UserStory{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "UserStoryId", nullable = false, updatable = false)
     private Long id;
 
     private String story;
