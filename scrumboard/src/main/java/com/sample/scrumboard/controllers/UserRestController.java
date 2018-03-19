@@ -1,10 +1,10 @@
 package com.sample.scrumboard.controllers;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sample.scrumboard.dtos.UserDTO;
 import com.sample.scrumboard.models.User;
 import com.sample.scrumboard.models.UserStory;
 import com.sample.scrumboard.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +32,9 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/{id}")
-    public User getUserById(@PathVariable Long id, User user){
+    public UserDTO getUserById(@PathVariable Long id, User user, ModelMapper modelMapper){
             user = repository.getOne(id);
-            return user;
+            return modelMapper.map(user, UserDTO.class);
     }
 
     @GetMapping(value = "/count")
