@@ -2,7 +2,22 @@
 
 Practice project
 
-In this project I'm practicing my spring knowledge.
-The end goal is creating my own scrum board on which you can move stories.
+In this project I'm practicing my Spring knowledge.
+The end goal is to create my own scrum board on which you can move stories around and update their status.
 
-I'm working according to the scrum methodology taking up new stories in a spring when they are ready.
+##Implemented
+* Accessing data with JPA
+* Routing
+* Serving web content with Spring MVC
+* Handling form submission
+* Form validation
+* application.yml
+* Spring Boot 2
+* dev-tools
+* h2 database
+* Dockerfile
+* Thymeleaf
+* Dto's and ModelMapper
+* Testing the weblayer
+
+
