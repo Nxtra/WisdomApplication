@@ -2,7 +2,7 @@
 
 Practice project
 
-In this project I'm practicing my Spring knowledge.
+In this project I'm creating an app for to use as springboot tutorial.
 The end goal is to create my own scrum board on which you can move stories around and update their status.
 
 ##Implemented
