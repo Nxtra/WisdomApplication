@@ -42,7 +42,7 @@ public class UserRestController {
         return ok(String.format("<b>De database bevat %d users</b>",repository.count()));
     }
 
-    @PutMapping(value = "/add")
+    @PutMapping(value = "/add")//does not work
     public ResponseEntity<User> putStatementThroughApi(@RequestBody @Valid User user){
         if(repository.findByEmailEquals(user.getEmail())!= null){
             return badRequest().build();
